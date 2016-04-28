@@ -1,0 +1,11 @@
+#!/bin/bash
+date=`date -I`
+
+for I in $(mysql -u root -pSALASANA -e 'show databases' -s --skip-column-names);
+do
+  if [[ $I != "information_schema" ]] && [[ $I != "performance_schema" ]]
+  then
+    echo backing up $I
+    mysqldump -u root -pSALASANA $I > "/backup/mysql-$I.sql"
+  fi
+done

@@ -1,0 +1,12 @@
+These files are used in conjuction to allow monitoring of a host behind a vpn tunnel which Nagios can't access.
+The script is run on a remote host which nagios can access and that is inside the vpn tunnel. 
+
+Run the script every minute via cron. It ping the host you try to reach and write a log based on whether the ping
+was succesful or not. On success, it will write "Online" into the log, on failure "Offline". The script will 
+overwrite the previous entry whenever it is ran.
+
+You will need a Nagios server and NRPE installed on both server and on the remote client you run the script on.
+The Nagios plugin needs to be on the remote client. Afterwards you can connect to the client from the Nagios server
+via NRPE and call the plugin. It will then check whether the host behind the tunnel is pingable from the remote client
+and post the info into Nagios web interface (granted you can configured Nagios and added host and service for the client
+and the check).

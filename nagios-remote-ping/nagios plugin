@@ -1,0 +1,13 @@
+#!/bin/bash
+line=$(head -n 1 <FILE LOCATION>)
+
+if [ $line = "Online" ]; then
+        echo "OK: VPN tunnel online."
+        exit 0
+elif [ $line = "Offline" ]; then
+        echo "Warning: VPN tunnel unreachable!"
+        exit 2
+else
+        echo "Unknown!"
+        exit 3
+fi

@@ -1,0 +1,21 @@
+First log in as server root.
+sudo su
+
+Create backup directory:
+mkdir /backup
+
+Then create mysqlbackup scrit:
+vi /root/mysqlbackup.sh 
+and copy the contents of the script to the file (add correct username and password)
+
+Make the script executable:
+chmod +x /root/mysqlbackup.sh
+
+Make cronjob for the script:
+crontab -e
+and add the following lines:
+# Dump MySQL databases to /backup
+00 22 * * * /root/mysqlbackup.sh > /root/mysqlbackup.log
+
+Now all your MySQL databases are dumped everyday 10pm to /backup folder. 
+Log for this routine can be found at /root/mysqlbackup.log.

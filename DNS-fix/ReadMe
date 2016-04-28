@@ -1,0 +1,11 @@
+This fix will force windows to reset dns server priority before the dns client chooses which server to use for each query. This eliminates problems caused by faulty dns server prioritisation by windows.
+It will basically alter the registry in the following way:
+
+1. Click start and search for regedit.exe and open
+2. Locate the following path: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters
+3. Right click -> New -> DWORD (32bit) value
+4. Name it ServerPriorityTimeLimit
+5. Right click -> Modify -> Set Value Data to 0
+
+(6. Close and restart the computer)
+
